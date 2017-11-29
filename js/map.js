@@ -107,7 +107,7 @@ var renderMapPin = function (mapPin) {
   return mapPinElement;
 };
 
-var mapPins = document.querySelector('.map__pins')
+var mapPins = document.querySelector('.map__pins');
 
 var renderPinFragment = function () {
   var pinFragment = document.createDocumentFragment();
@@ -155,12 +155,12 @@ var renderMapCard = function (object) {
   mapCardElement.querySelector('.popup__price').textContent = object.offer.price + ' \u20BD/ночь';
 
   if (object.offer.type === 'flat') {
-      mapCardElement.querySelector('h4').textContent = 'Квартира';
+    mapCardElement.querySelector('h4').textContent = 'Квартира';
   } else if (object.offer.type === 'house') {
-      mapCardElement.querySelector('h4').textContent = 'Дом';
+    mapCardElement.querySelector('h4').textContent = 'Дом';
   } else {
-      mapCardElement.querySelector('h4').textContent = 'Бунгало';
-  };
+    mapCardElement.querySelector('h4').textContent = 'Бунгало';
+  }
 
   mapCardElementP[2].textContent = generateRoomsGuests(object.offer.rooms, object.offer.guests);
   mapCardElementP[3].textContent = 'Заезд после ' + object.offer.checkin + ', выезд до ' + object.offer.checkout;
