@@ -38,7 +38,7 @@ var getRandomValue = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-//map.classList.remove('map--faded');
+//  map.classList.remove('map--faded');
 
 var getAvatar = function () {
   var avatarRandomIndex = getRandomValue(0, AVATAR.length);
@@ -101,7 +101,7 @@ var getObjectsArray = function (objectsCount) {
   return objects;
 };
 
-var objects = getObjectsArray(OBJECTS_COUNT);
+objects = getObjectsArray(OBJECTS_COUNT);
 
 var renderMapPin = function (mapPin) {
   var mapPinTemplate = document.querySelector('template').content.querySelector('.map__pin');
@@ -185,7 +185,7 @@ var renderCardFragment = function () {
 mapPins.appendChild(renderPinFragment());
 mapCard.appendChild(renderCardFragment());
 
-//события
+//  события
 
 var pinMain = map.querySelector('.map__pin--main'); // главный маркер
 var popupClose = map.querySelector('.popup__close'); // крестик
@@ -197,9 +197,9 @@ function onPopupEscPress(evt) {
   }
 }
 
-popupClose.addEventListener('click', function() {
+popupClose.addEventListener('click', function () {
   closeCard();
-})
+});
 
 var form = document.querySelector('.notice__form');
 var cardPopup = map.querySelector('.map__card');
@@ -212,13 +212,13 @@ function openMap() {
 
   map.classList.remove('map--faded');
   form.classList.remove('notice__form--disabled');
-};
+}
 
 function showCard(i) {
   var fragment = document.createDocumentFragment();
   fragment.appendChild(renderMapCard(objects[i]));
   return fragment;
-};
+}
 
 function openCard(index, lastIndex) {
   pinsImg[index].parentNode.classList.add('map__pin--active');
@@ -228,15 +228,15 @@ function openCard(index, lastIndex) {
     pinsImg[lastIndex].parentNode.classList.remove('map__pin--active');
   }
   document.addEventListener('keydown', onPopupEscPress);
-};
+}
 
 function closeCard() {
   cardPopup.classList.add('hidden');
   if (prevIndex !== -1) {
-  pinsImg[prevIndex].parentNode.classList.remove('map__pin--active');
+    pinsImg[prevIndex].parentNode.classList.remove('map__pin--active');
   }
   prevIndex = -1;
-};
+}
 
 pinMain.addEventListener('mouseup', function () {
   openMap();
@@ -267,8 +267,8 @@ document.body.addEventListener('click', function (evt) {
 document.body.addEventListener('keydown', function (evt) {
   for (var i = 0; i < pinsImg.length; i++) {
     if (!pinsImg[i].parentNode.classList.contains('map__pin--main') && evt.target === pinsImg[i].parentNode && evt.keyCode === ENTER) {
-    openCard(i, prevIndex);
-    prevIndex = i;
+      openCard(i, prevIndex);
+      prevIndex = i;
     }
   }
 });
