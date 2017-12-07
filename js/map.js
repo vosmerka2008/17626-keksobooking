@@ -274,7 +274,7 @@ document.body.addEventListener('keydown', function (evt) {
 
 var formNotice = document.querySelector('.notice__form');
 var title = formNotice.querySelector('#title');
-//var addressHousing = formNotice.querySelector('#address');
+var address = formNotice.querySelector('#address');
 var type = formNotice.querySelector('#type');
 var price = formNotice.querySelector('#price');
 var timeIn = formNotice.querySelector('#timein');
@@ -282,6 +282,9 @@ var timeOut = formNotice.querySelector('#timeout');
 var room = formNotice.querySelector('#room_number');
 var capacity = formNotice.querySelector('#capacity');
 
+address.setAttribute('required', '');
+address.setAttribute('readonly', '');
+address.value = 'Центральная площадь';
 title.setAttribute('minlength', '30');
 title.setAttribute('maxlength', '100');
 title.setAttribute('required', '');
