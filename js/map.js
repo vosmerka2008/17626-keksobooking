@@ -269,6 +269,7 @@ document.body.addEventListener('keydown', function (evt) {
 });
 
 //  валидация
+
 var MIN_TITLE = 30;
 var MAX_TITLE = 100;
 var MIN_PRICE_VALUE = 0;
