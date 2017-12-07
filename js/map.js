@@ -196,9 +196,7 @@ function onPopupEscPress(evt) {
   }
 }
 
-popupClose.addEventListener('click', function () {
-  closeCard();
-});
+popupClose.addEventListener('click', closeCard)
 
 var form = document.querySelector('.notice__form');
 var cardPopup = map.querySelector('.map__card');
@@ -271,7 +269,15 @@ document.body.addEventListener('keydown', function (evt) {
 });
 
 //  валидация
-
+var MIN_TITLE = 30;
+var MAX_TITLE = 100;
+var MIN_PRICE = 0;
+var MAX_PRICE = 1000000;
+var PRICE_VALUE =1000;
+var FLAT_PRICE = 1000;
+var HUT_PRICE = 0;
+var HOUSE_PRICE = 5000;
+var PALACE_PRICE = 10000;
 var formNotice = document.querySelector('.notice__form');
 var title = formNotice.querySelector('#title');
 var address = formNotice.querySelector('#address');
@@ -281,12 +287,13 @@ var timeIn = formNotice.querySelector('#timein');
 var timeOut = formNotice.querySelector('#timeout');
 var room = formNotice.querySelector('#room_number');
 var capacity = formNotice.querySelector('#capacity');
+var submit = formNotice.querySelector('.form__submit');
 
 address.setAttribute('required', '');
 address.setAttribute('readonly', '');
 address.value = 'Центральная площадь';
-title.setAttribute('minlength', '30');
-title.setAttribute('maxlength', '100');
+title.setAttribute('minlength', MIN_TITLE);
+title.setAttribute('maxlength', MAX_TITLE);
 title.setAttribute('required', '');
 
 var InvalidTitleInput = function () {
@@ -315,9 +322,9 @@ timeIn.addEventListener('change', ChangeTimeIn);
 timeOut.addEventListener('change', ChangeTimeOut);
 
 price.setAttribute('type', 'number');
-price.setAttribute('value', '1000');
-price.setAttribute('min', '0');
-price.setAttribute('max', '1000000');
+price.setAttribute('value', PRICE_VALUE);
+price.setAttribute('min', MIN_PRICE);
+price.setAttribute('max', MAX_PRICE);
 price.setAttribute('required', '');
 
 var InvalidPriceInput = function () {
@@ -337,16 +344,16 @@ price.addEventListener('invalid', InvalidPriceInput);
 type.addEventListener('change', function () {
   switch (type.selectedIndex) {
     case 0:
-      price.value = '1000';
+      price.value = FLAT_PRICE;
       break;
     case 1:
-      price.value = '0';
+      price.value = HUT_PRICE;
       break;
     case 2:
-      price.value = '5000';
+      price.value = HOUSE_PRICE;
       break;
     case 3:
-      price.value = '10000';
+      price.value = PALACE_PRICE;
       break;
   }
 });
@@ -368,8 +375,6 @@ room.addEventListener('change', function () {
       break;
   }
 });
-
-var submit = formNotice.querySelector('.form__submit');
 
 submit.addEventListener('click', checkForm);
 
