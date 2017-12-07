@@ -196,7 +196,7 @@ function onPopupEscPress(evt) {
   }
 }
 
-popupClose.addEventListener('click', closeCard)
+popupClose.addEventListener('click', closeCard);
 
 var form = document.querySelector('.notice__form');
 var cardPopup = map.querySelector('.map__card');
@@ -271,9 +271,9 @@ document.body.addEventListener('keydown', function (evt) {
 //  валидация
 var MIN_TITLE = 30;
 var MAX_TITLE = 100;
-var MIN_PRICE = 0;
-var MAX_PRICE = 1000000;
-var PRICE_VALUE =1000;
+var MIN_PRICE_VALUE = 0;
+var MAX_PRICE_VALUE = 1000000;
+var PRICE_VALUE = 1000;
 var FLAT_PRICE = 1000;
 var HUT_PRICE = 0;
 var HOUSE_PRICE = 5000;
@@ -323,8 +323,8 @@ timeOut.addEventListener('change', ChangeTimeOut);
 
 price.setAttribute('type', 'number');
 price.setAttribute('value', PRICE_VALUE);
-price.setAttribute('min', MIN_PRICE);
-price.setAttribute('max', MAX_PRICE);
+price.setAttribute('min', MIN_PRICE_VALUE);
+price.setAttribute('max', MAX_PRICE_VALUE);
 price.setAttribute('required', '');
 
 var InvalidPriceInput = function () {
