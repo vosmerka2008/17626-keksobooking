@@ -274,7 +274,7 @@ document.body.addEventListener('keydown', function (evt) {
 
 var formNotice = document.querySelector('.notice__form');
 var title = formNotice.querySelector('#title');
-var addressHousing = formNotice.querySelector('#address');
+//var addressHousing = formNotice.querySelector('#address');
 var type = formNotice.querySelector('#type');
 var price = formNotice.querySelector('#price');
 var timeIn = formNotice.querySelector('#timein');
