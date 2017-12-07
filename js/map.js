@@ -186,8 +186,8 @@ map.appendChild(renderCardFragment());
 
 //  события
 
-var pinMain = map.querySelector('.map__pin--main'); // главный маркер
-var popupClose = map.querySelector('.popup__close'); // крестик
+var pinMain = map.querySelector('.map__pin--main');
+var popupClose = map.querySelector('.popup__close');
 var pins = map.querySelectorAll('.map__pin');
 
 function onPopupEscPress(evt) {
@@ -271,9 +271,10 @@ document.body.addEventListener('keydown', function (evt) {
 });
 
 //  валидация
+
 var formNotice = document.querySelector('.notice__form');
 var title = formNotice.querySelector('#title');
-var addressHousing = formNotice.querySelector('#address');
+//var addressHousing = formNotice.querySelector('#address');
 var type = formNotice.querySelector('#type');
 var price = formNotice.querySelector('#price');
 var timeIn = formNotice.querySelector('#timein');
@@ -281,23 +282,11 @@ var timeOut = formNotice.querySelector('#timeout');
 var room = formNotice.querySelector('#room_number');
 var capacity = formNotice.querySelector('#capacity');
 
-/*// Выделение красным цветом рамки поля при ошибочном вводе
-var changeBorderColor = function (elem) {
-  elem.style.borderWidth = '2px';
-  elem.style.borderColor = 'red';
-};
-// Возвращение рамки в прежнее состояние
-var resetBorderColor = function (elem) {
-  elem.style.borderWidth = '';
-  elem.style.borderColor = '';
-};*/
-
 title.setAttribute('minlength', '30');
 title.setAttribute('maxlength', '100');
 title.setAttribute('required', '');
 
 var InvalidTitleInput = function () {
-  //changeBorderColor(title);
   if (title.validity.tooShort) {
     title.setCustomValidity('Заголовок слишком короткий. Введите не менее 30-ти символов, пожалуйста');
   } else if (title.validity.tooLong) {
@@ -306,25 +295,19 @@ var InvalidTitleInput = function () {
     title.setCustomValidity('Нужно заполнить');
   } else {
     title.setCustomValidity('');
-    //resetBorderColor(title);
-  }
 };
 
 title.addEventListener('invalid', InvalidTitleInput);
 
-//  Автоввод времени выезда при изменении времени въезда
 var ChangeTimeIn = function () {
   timeOut.selectedIndex = timeIn.selectedIndex;
-
 };
-//  Автоввод времени въезда при изменении времени выезда
+
 var ChangeTimeOut = function () {
   timeIn.selectedIndex = timeOut.selectedIndex;
 };
 
-// Событие изменения времени въезда
 timeIn.addEventListener('change', ChangeTimeIn);
-// Событие изменения времени выезда
 timeOut.addEventListener('change', ChangeTimeOut);
 
 price.setAttribute('type', 'number');
@@ -334,7 +317,6 @@ price.setAttribute('max', '1000000');
 price.setAttribute('required', '');
 
 var InvalidPriceInput = function () {
-  //changeBorderColor(price);
   if (price.validity.rangeUnderflow) {
     price.setCustomValidity('Слишком дешево');
   } else if (price.validity.rangeOverflow) {
@@ -343,7 +325,6 @@ var InvalidPriceInput = function () {
     price.setCustomValidity('Нужно заполнить');
   } else {
     price.setCustomValidity('');
-    //resetBorderColor(priceHouse);
   }
 };
 
@@ -388,10 +369,6 @@ var submit = formNotice.querySelector('.form__submit');
 
 submit.addEventListener('click', checkForm);
 
-/*function onSubmitClick() {
-  checkBeforeSending();
-}
-*/
 function checkForm() {
   var Inputs = formNotice.querySelectorAll('input');
   var Selects = formNotice.querySelectorAll('select');
@@ -408,4 +385,3 @@ function checkFormElements(elem) {
     }
   }
 }
-
