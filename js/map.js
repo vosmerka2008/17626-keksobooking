@@ -346,15 +346,19 @@ type.addEventListener('change', function () {
   switch (type.selectedIndex) {
     case 0:
       price.value = FLAT_PRICE;
+      price.setAttribute('min', FLAT_PRICE);
       break;
     case 1:
       price.value = HUT_PRICE;
+      price.setAttribute('min', HUT_PRICE);
       break;
     case 2:
       price.value = HOUSE_PRICE;
+      price.setAttribute('min', HOUSE_PRICE);
       break;
     case 3:
       price.value = PALACE_PRICE;
+      price.setAttribute('min', PALACE_PRICE);
       break;
   }
 });
