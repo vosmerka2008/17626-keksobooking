@@ -6,35 +6,10 @@
   var map = document.querySelector('.map');
   var mapCardTemplate = document.querySelector('template').content.querySelector('.map__card');
   var mapCardElement = mapCardTemplate.cloneNode(true);
-
-  var generateRoomsGuests = function (rooms, guests) {
-    var roomsCount;
-    if (rooms > 4) {
-      roomsCount = 'комнат';
-    } else {
-      roomsCount = rooms === 1 ? ' комната' : ' комнаты';
-    }
-
-    var guestsCount = guests === 1 ? ' гостя' : ' гостей';
-
-    return rooms + roomsCount + ' для ' + guests + guestsCount;
-  };
-
-  var renderFeaturesList = function (features) {
-    var featuresUl = mapCardElement.querySelector('.popup__features');
-    var featuresLi = document.createDocumentFragment();
-    for (var i = 0; i < features.length; i++) {
-      var newElement = document.createElement('li');
-      newElement.className = 'feature feature--' + features[i];
-      featuresLi.appendChild(newElement);
-    }
-    featuresUl.appendChild(featuresLi);
-  };
-
   var pinMain = map.querySelector('.map__pin--main');
   var pins = map.querySelectorAll('.map__pin');
-
   var popupClose = map.querySelector('.popup__close');
+
   function onPopupEscPress(evt) {
     if (evt.keyCode === ESC) {
       window.pin.closeCard();
