@@ -4,7 +4,6 @@
   var ESC = 27;
   var ENTER = 13;
   var map = document.querySelector('.map');
-  var mapCardTemplate = document.querySelector('template').content.querySelector('.map__card');
   var pinMain = map.querySelector('.map__pin--main');
   var pins = map.querySelectorAll('.map__pin');
   var popupClose = map.querySelector('.popup__close');
