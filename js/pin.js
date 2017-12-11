@@ -4,12 +4,9 @@
 
   var PIN_WIDTH = 40;
   var PIN_HEIGHT = 40;
-  var ESC = 27;
   var ENTER = 13;
   var map = document.querySelector('.map');
   var mapPins = document.querySelector('.map__pins');
-
-
 
   window.pin = {
     renderMapPin: function (mapPin) {
@@ -41,13 +38,6 @@
   var pinsImg = map.querySelectorAll('.map__pin img');
   var prevIndex = -1;
 
-  function toggleActivePin (pinsImg, index, lastIndex) {
-    pinsImg[index].parentNode.classList.add('map__pin--active');
-    if (lastIndex !== -1) {
-      pinsImg[lastIndex].parentNode.classList.remove('map__pin--active');
-    }
-  }
-
   function createCardFragment(i) {
     var fragment = document.createDocumentFragment();
     fragment.appendChild(window.card.renderMapCard(window.data.objects[i]));
@@ -55,14 +45,16 @@
   }
 
   function openCard(index, lastIndex) {
-    console.log('bbbbb');
     var cardPopup = map.querySelector('.map__card');
+    pinsImg[index].parentNode.classList.add('map__pin--active');
     mapPins.appendChild(createCardFragment(index - 1));
     cardPopup.classList.remove('hidden');
-    toggleActivePin(pinsImg, index, lastIndex);
+    if (lastIndex !== -1) {
+      pinsImg[lastIndex].parentNode.classList.remove('map__pin--active');
+    }
   }
 
-  function innerCloseCard () {
+  function innerCloseCard() {
     var cardPopup = map.querySelector('.map__card');
     cardPopup.classList.add('hidden');
     if (prevIndex !== -1) {

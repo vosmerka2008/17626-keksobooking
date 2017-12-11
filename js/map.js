@@ -1,9 +1,11 @@
 'use strict';
 
 (function () {
+  var ESC = 27;
+  var ENTER = 13;
   var map = document.querySelector('.map');
-  var mapPins = document.querySelector('.map__pins');
-  var objects = window.data.objects;
+  //var mapPins = document.querySelector('.map__pins');
+  //var objects = window.data.objects;
   var mapCardTemplate = document.querySelector('template').content.querySelector('.map__card');
   var mapCardElement = mapCardTemplate.cloneNode(true);
 
