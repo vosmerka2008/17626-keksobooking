@@ -31,7 +31,7 @@
     featuresUl.appendChild(featuresLi);
   };
 
-  var renderMapCard = function (object) {
+  function renderMapCard (object) {
     var mapCardElementP = mapCardElement.querySelectorAll('p');
 
     mapCardElement.querySelector('.popup__avatar').src = object.author.avatar;

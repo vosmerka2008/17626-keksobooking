@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+window.form = (function () {
   var MIN_TITLE = 30;
   var MAX_TITLE = 100;
   var MIN_PRICE_VALUE = 0;

@@ -25,12 +25,9 @@
   var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   var OBJECTS_COUNT = 8;
 
-
   var getRandomValue = function (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   };
-
-  //  map.classList.remove('map--faded');
 
   var getAvatar = function () {
     var avatarRandomIndex = getRandomValue(0, AVATAR.length);
