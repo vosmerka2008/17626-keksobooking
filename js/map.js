@@ -31,31 +31,6 @@
     featuresUl.appendChild(featuresLi);
   };
 
-  function renderMapCard (object) {
-    var mapCardElementP = mapCardElement.querySelectorAll('p');
-
-    mapCardElement.querySelector('.popup__avatar').src = object.author.avatar;
-    mapCardElement.querySelector('h3').textContent = object.offer.title;
-    mapCardElement.querySelector('small').textContent = object.offer.address;
-    mapCardElement.querySelector('.popup__price').textContent = object.offer.price + ' \u20BD/ночь';
-
-    if (object.offer.type === 'flat') {
-      mapCardElement.querySelector('h4').textContent = 'Квартира';
-    } else if (object.offer.type === 'house') {
-      mapCardElement.querySelector('h4').textContent = 'Дом';
-    } else {
-      mapCardElement.querySelector('h4').textContent = 'Бунгало';
-    }
-
-    mapCardElementP[2].textContent = generateRoomsGuests(object.offer.rooms, object.offer.guests);
-    mapCardElementP[3].textContent = 'Заезд после ' + object.offer.checkin + ', выезд до ' + object.offer.checkout;
-    mapCardElement.querySelector('.popup__features').textContent = '';
-    renderFeaturesList(object.offer.features);
-    mapCardElementP[4].textContent = object.offer.description;
-
-    return mapCardElement;
-  };
-
   var pinMain = map.querySelector('.map__pin--main');
   var pins = map.querySelectorAll('.map__pin');
 
