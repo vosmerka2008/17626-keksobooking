@@ -45,10 +45,10 @@
   var HEIGHT_MAIN_POINTER = 22;
   var MIN_BORDER_Y = 100;
   var MAX_BORDER_Y = 500;
-  var MIN_BORDER_X = Math.round(HEIGHT_MAIN_PIN/2);
+  var MIN_BORDER_X = Math.round(HEIGHT_MAIN_PIN / 2);
   var MAX_BORDER_X = MAP_WIDTH - MIN_BORDER_X;
 
-  var pinMainTop = Math.round(HEIGHT_MAIN_PIN/2 + HEIGHT_MAIN_POINTER);
+  var pinMainTop = Math.round(HEIGHT_MAIN_PIN / 2 + HEIGHT_MAIN_POINTER);
 
   pinMain.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
