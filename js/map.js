@@ -44,7 +44,7 @@
   var HEIGHT_MAIN_PIN = 65;
   var HEIGHT_MAIN_POINTER = 22;
   var MIN_BORDER_Y = 100;
-  var MAX_BORDER_Y = 500;
+  var MAX_BORDER_Y = parseInt(window.getComputedStyle(map,null).getPropertyValue("height"), 10) - parseInt(window.getComputedStyle(document.querySelector('.map__filters'),null).getPropertyValue("height"), 10);
   var MIN_BORDER_X = Math.round(HEIGHT_MAIN_PIN / 2);
   var MAX_BORDER_X = MAP_WIDTH - MIN_BORDER_X;
 
