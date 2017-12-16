@@ -73,7 +73,7 @@ window.form = (function () {
 
   price.addEventListener('invalid', InvalidPriceInput);
 
-  var syncValueWithMin = function(element, value) {
+  var syncValueWithMin = function (element, value) {
     element.min = value;
     element.value = value;
   };

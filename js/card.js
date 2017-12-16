@@ -58,15 +58,15 @@
   };
 
 
-    var renderCardFragment = function () {
-      var cardFragment = document.createDocumentFragment();
+  var renderCardFragment = function () {
+    var cardFragment = document.createDocumentFragment();
 
-      for (var i = 0; i < window.data.objects.length; i++) {
-        cardFragment.appendChild(window.card.renderMapCard(window.data.objects[i]));
-      }
+    for (var i = 0; i < window.data.objects.length; i++) {
+      cardFragment.appendChild(window.card.renderMapCard(window.data.objects[i]));
+    }
 
-      return cardFragment;
-    };
+    return cardFragment;
+  };
 
   map.appendChild(renderCardFragment());
 })();

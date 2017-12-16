@@ -24,7 +24,7 @@
   var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   var OBJECTS_COUNT = 8;
   window.data = {
-     CHECKS: ['12:00', '13:00', '14:00']
+    CHECKS: ['12:00', '13:00', '14:00']
   };
 
   var getRandomValue = function (min, max) {

@@ -18,5 +18,5 @@
     if (lastIndex !== -1) {
       pinsImg[lastIndex].parentNode.classList.remove('map__pin--active');
     }
-  }
+  };
 })();
