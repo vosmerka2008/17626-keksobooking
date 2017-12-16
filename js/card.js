@@ -57,14 +57,16 @@
     }
   };
 
-  var renderCardFragment = function () {
-    var cardFragment = document.createDocumentFragment();
 
-    for (var i = 0; i < window.data.objects.length; i++) {
-      cardFragment.appendChild(window.card.renderMapCard(window.data.objects[i]));
-    }
+    var renderCardFragment = function () {
+      var cardFragment = document.createDocumentFragment();
 
-    return cardFragment;
-  };
+      for (var i = 0; i < window.data.objects.length; i++) {
+        cardFragment.appendChild(window.card.renderMapCard(window.data.objects[i]));
+      }
+
+      return cardFragment;
+    };
+
   map.appendChild(renderCardFragment());
 })();

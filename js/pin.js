@@ -38,22 +38,6 @@
   var pinsImg = map.querySelectorAll('.map__pin img');
   var prevIndex = -1;
 
-  function createCardFragment(i) {
-    var fragment = document.createDocumentFragment();
-    fragment.appendChild(window.card.renderMapCard(window.data.objects[i]));
-    return fragment;
-  }
-
-  function openCard(index, lastIndex) {
-    var cardPopup = map.querySelector('.map__card');
-    pinsImg[index].parentNode.classList.add('map__pin--active');
-    mapPins.appendChild(createCardFragment(index - 1));
-    cardPopup.classList.remove('hidden');
-    if (lastIndex !== -1) {
-      pinsImg[lastIndex].parentNode.classList.remove('map__pin--active');
-    }
-  }
-
   function innerCloseCard() {
     var cardPopup = map.querySelector('.map__card');
     cardPopup.classList.add('hidden');
@@ -66,7 +50,7 @@
   document.body.addEventListener('click', function (evt) {
     for (var i = 0; i < pinsImg.length; i++) {
       if (!pinsImg[i].parentNode.classList.contains('map__pin--main') && evt.target === pinsImg[i]) {
-        openCard(i, prevIndex);
+        window.showCard(pinsImg, i, prevIndex);
         prevIndex = i;
       }
 
@@ -79,7 +63,7 @@
   document.body.addEventListener('keydown', function (evt) {
     for (var i = 0; i < pinsImg.length; i++) {
       if (!pinsImg[i].parentNode.classList.contains('map__pin--main') && evt.target === pinsImg[i].parentNode && evt.keyCode === ENTER) {
-        openCard(i, prevIndex);
+        window.showCard(pinsImg, i, prevIndex);
         prevIndex = i;
       }
     }

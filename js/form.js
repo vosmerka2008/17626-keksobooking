@@ -10,6 +10,8 @@ window.form = (function () {
   var HUT_PRICE = 0;
   var HOUSE_PRICE = 5000;
   var PALACE_PRICE = 10000;
+  var PRICES = [FLAT_PRICE, HUT_PRICE, HOUSE_PRICE, PALACE_PRICE];
+  var APARTMENTS = ['flat', 'bungalo', 'house', 'palace'];
   var formNotice = document.querySelector('.notice__form');
   var title = formNotice.querySelector('#title');
   var address = formNotice.querySelector('#address');
@@ -42,16 +44,25 @@ window.form = (function () {
 
   title.addEventListener('invalid', InvalidTitleInput);
 
-  var ChangeTimeIn = function () {
+  var syncValues = function (element, value) {
+    element.value = value;
+  };
+
+  //var CHECKS = ['12:00', '13:00', '14:00'];
+  window.synchronizeFields(timeIn, timeOut, window.data.CHECKS, window.data.CHECKS, syncValues);
+  window.synchronizeFields(timeOut, timeIn, window.data.CHECKS, window.data.CHECKS, syncValues);
+
+
+  /*var ChangeTimeIn = function () {
     timeOut.selectedIndex = timeIn.selectedIndex;
   };
 
   var ChangeTimeOut = function () {
     timeIn.selectedIndex = timeOut.selectedIndex;
   };
-
-  timeIn.addEventListener('change', ChangeTimeIn);
-  timeOut.addEventListener('change', ChangeTimeOut);
+*/
+  //timeIn.addEventListener('change', ChangeTimeIn);
+  //timeOut.addEventListener('change', ChangeTimeOut);
 
   price.setAttribute('type', 'number');
   price.setAttribute('value', PRICE_VALUE);
@@ -73,7 +84,15 @@ window.form = (function () {
 
   price.addEventListener('invalid', InvalidPriceInput);
 
-  type.addEventListener('change', function () {
+  var syncValueWithMin = function(element, value) {
+    element.min = value;
+    element.value = value;
+  };
+
+  window.synchronizeFields(type, price, APARTMENTS, PRICES, syncValueWithMin);
+
+
+  /*type.addEventListener('change', function () {
     switch (type.selectedIndex) {
       case 0:
         price.value = FLAT_PRICE;
@@ -92,7 +111,7 @@ window.form = (function () {
         price.setAttribute('min', PALACE_PRICE);
         break;
     }
-  });
+  });*/
 
   capacity.selectedIndex = 2;
   room.addEventListener('change', function () {
