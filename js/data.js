@@ -21,11 +21,11 @@
   var MIN_ROOMS = 1;
   var MAX_ROOMS = 5;
   var MAX_GUESTS = 10;
-  window.data = {
-   CHECKS: ['12:00', '13:00', '14:00']
-  }
   var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   var OBJECTS_COUNT = 8;
+  window.data = {
+     CHECKS: ['12:00', '13:00', '14:00']
+  };
 
   var getRandomValue = function (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -92,7 +92,5 @@
     return objects;
   };
 
-  window.data = {
-    objects: getObjectsArray(OBJECTS_COUNT)
-  };
+  window.data.objects = getObjectsArray(OBJECTS_COUNT);
 })();

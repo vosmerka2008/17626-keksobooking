@@ -8,7 +8,6 @@
           action(secondElement, valuesOfSecondElement[i]);
         }
       }
-      console.log(firstElementValues.length);
     });
   };
 })();
