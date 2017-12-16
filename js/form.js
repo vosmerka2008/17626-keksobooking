@@ -51,7 +51,7 @@ window.form = (function () {
   };
 
   window.synchronizeFields(timeIn, timeOut, window.data.CHECKS, window.data.CHECKS, syncValues);
-  window.synchronizeFields(timeIn, timeOut, window.data.CHECKS, window.data.CHECKS, syncValues);
+  window.synchronizeFields(timeOut, timeIn, window.data.CHECKS, window.data.CHECKS, syncValues);
 
   price.setAttribute('type', 'number');
   price.setAttribute('value', PRICE_VALUE);
