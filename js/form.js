@@ -10,6 +10,10 @@ window.form = (function () {
   var HUT_PRICE = 0;
   var HOUSE_PRICE = 5000;
   var PALACE_PRICE = 10000;
+  var PRICES = [FLAT_PRICE, HUT_PRICE, HOUSE_PRICE, PALACE_PRICE];
+  var APARTMENTS = ['flat', 'bungalo', 'house', 'palace'];
+  var ROOMS = ['1', '2', '3', '100'];
+  var CAPACITY = ['1', '2', '3', '0'];
   var formNotice = document.querySelector('.notice__form');
   var title = formNotice.querySelector('#title');
   var address = formNotice.querySelector('#address');
@@ -17,8 +21,8 @@ window.form = (function () {
   var price = formNotice.querySelector('#price');
   var timeIn = formNotice.querySelector('#timein');
   var timeOut = formNotice.querySelector('#timeout');
-  var room = formNotice.querySelector('#room_number');
-  var capacity = formNotice.querySelector('#capacity');
+  var roomElement = formNotice.querySelector('#room_number');
+  var capacityElement = formNotice.querySelector('#capacity');
   var submit = formNotice.querySelector('.form__submit');
 
   address.setAttribute('required', '');
@@ -42,16 +46,12 @@ window.form = (function () {
 
   title.addEventListener('invalid', InvalidTitleInput);
 
-  var ChangeTimeIn = function () {
-    timeOut.selectedIndex = timeIn.selectedIndex;
+  var syncValues = function (element, value) {
+    element.value = value;
   };
 
-  var ChangeTimeOut = function () {
-    timeIn.selectedIndex = timeOut.selectedIndex;
-  };
-
-  timeIn.addEventListener('change', ChangeTimeIn);
-  timeOut.addEventListener('change', ChangeTimeOut);
+  window.synchronizeFields(timeIn, timeOut, window.data.CHECKS, window.data.CHECKS, syncValues);
+  window.synchronizeFields(timeOut, timeIn, window.data.CHECKS, window.data.CHECKS, syncValues);
 
   price.setAttribute('type', 'number');
   price.setAttribute('value', PRICE_VALUE);
@@ -73,44 +73,13 @@ window.form = (function () {
 
   price.addEventListener('invalid', InvalidPriceInput);
 
-  type.addEventListener('change', function () {
-    switch (type.selectedIndex) {
-      case 0:
-        price.value = FLAT_PRICE;
-        price.setAttribute('min', FLAT_PRICE);
-        break;
-      case 1:
-        price.value = HUT_PRICE;
-        price.setAttribute('min', HUT_PRICE);
-        break;
-      case 2:
-        price.value = HOUSE_PRICE;
-        price.setAttribute('min', HOUSE_PRICE);
-        break;
-      case 3:
-        price.value = PALACE_PRICE;
-        price.setAttribute('min', PALACE_PRICE);
-        break;
-    }
-  });
+  var syncValueWithMin = function (element, value) {
+    element.min = value;
+    element.value = value;
+  };
 
-  capacity.selectedIndex = 2;
-  room.addEventListener('change', function () {
-    switch (room.selectedIndex) {
-      case 0:
-        capacity.selectedIndex = 2;
-        break;
-      case 1:
-        capacity.selectedIndex = 1;
-        break;
-      case 2:
-        capacity.selectedIndex = 0;
-        break;
-      case 3:
-        capacity.selectedIndex = 3;
-        break;
-    }
-  });
+  window.synchronizeFields(type, price, APARTMENTS, PRICES, syncValueWithMin);
+  window.synchronizeFields(roomElement, capacityElement, ROOMS, CAPACITY, syncValues);
 
   submit.addEventListener('click', checkForm);
 

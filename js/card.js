@@ -57,6 +57,7 @@
     }
   };
 
+
   var renderCardFragment = function () {
     var cardFragment = document.createDocumentFragment();
 
@@ -66,5 +67,6 @@
 
     return cardFragment;
   };
+
   map.appendChild(renderCardFragment());
 })();

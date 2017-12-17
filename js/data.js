@@ -21,9 +21,11 @@
   var MIN_ROOMS = 1;
   var MAX_ROOMS = 5;
   var MAX_GUESTS = 10;
-  var CHECKS = ['12:00', '13:00', '14:00'];
   var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   var OBJECTS_COUNT = 8;
+  window.data = {
+    CHECKS: ['12:00', '13:00', '14:00']
+  };
 
   var getRandomValue = function (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -65,8 +67,8 @@
         type: TYPES[getRandomValue(0, TYPES.length)],
         rooms: getRandomValue(MIN_ROOMS, MAX_ROOMS),
         guests: getRandomValue(1, MAX_GUESTS),
-        checkin: CHECKS[getRandomValue(0, CHECKS.length)],
-        checkout: CHECKS[getRandomValue(0, CHECKS.length)],
+        checkin: window.data.CHECKS[getRandomValue(0, window.data.CHECKS.length)],
+        checkout: window.data.CHECKS[getRandomValue(0, window.data.CHECKS.length)],
         features: getFeatures(),
         description: '',
         photos: []
@@ -90,7 +92,5 @@
     return objects;
   };
 
-  window.data = {
-    objects: getObjectsArray(OBJECTS_COUNT)
-  };
+  window.data.objects = getObjectsArray(OBJECTS_COUNT);
 })();
