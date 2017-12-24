@@ -1,96 +1,32 @@
 'use strict';
 
 (function () {
-  var AVATAR = ['01', '02', '03', '04', '05', '06', '07', '08'];
-  var TITLE = [
-    'Большая уютная квартира',
-    'Маленькая неуютная квартира',
-    'Огромный прекрасный дворец',
-    'Маленький ужасный дворец',
-    'Красивый гостевой домик',
-    'Некрасивый негостеприимный домик',
-    'Уютное бунгало далеко от моря',
-    'Неуютное бунгало по колено в воде'];
-  var MIN_X = 300;
-  var MAX_X = 900;
-  var MIN_Y = 100;
-  var MAX_Y = 500;
-  var MIN_PRICE = 1000;
-  var MAX_PRICE = 1000000;
-  var TYPES = ['flat', 'house', 'bungalo'];
-  var MIN_ROOMS = 1;
-  var MAX_ROOMS = 5;
-  var MAX_GUESTS = 10;
-  var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   var OBJECTS_COUNT = 8;
+
+  var loadHandler = function (serverObjects) {
+    for (var i = 0; i < OBJECTS_COUNT; i++) {
+      window.data.objects.push(serverObjects[i]);
+    }
+
+    window.pin.renderAllPins(window.data.objects);
+  };
+
   window.data = {
-    CHECKS: ['12:00', '13:00', '14:00']
-  };
+    objects: [],
 
-  var getRandomValue = function (min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  };
+    errorHandler: function (errorMessage) {
+      var node = document.createElement('div');
+      node.style = 'z-index: 100; margin: 50% auto; text-align: center; background-color: white; border: 2px dashed red; color: red; text-transform: uppercase;';
+      node.style.position = 'absolute';
+      node.style.left = 0;
+      node.style.right = 0;
+      node.style.textShadow = '3px 3px 2px lightgrey';
+      node.style.width = '70%';
 
-  var getAvatar = function () {
-    var avatarRandomIndex = getRandomValue(0, AVATAR.length);
-    var avatarIndex = AVATAR.splice(avatarRandomIndex, 1);
-
-    return 'img/avatars/user' + avatarIndex + '.png';
-  };
-
-  var getFeatures = function () {
-    var features = FEATURES.slice();
-    var randomFeaturesLength = getRandomValue(1, features.length + 1);
-    var newFeatures = [];
-
-    for (var i = 0; i < randomFeaturesLength; i++) {
-      var randomElement = getRandomValue(0, features.length);
-      newFeatures.push(features[randomElement]);
-      features.splice(randomElement, 1);
+      node.textContent = errorMessage;
+      document.body.insertAdjacentElement('afterbegin', node);
     }
-
-    return newFeatures;
   };
 
-  var getNewObject = function () {
-    var locationX = getRandomValue(MIN_X, MAX_X);
-    var locationY = getRandomValue(MIN_Y, MAX_Y);
-    var object = {
-      author: {
-        avatar: getAvatar()
-      },
-
-      offer: {
-        title: TITLE.splice(getRandomValue(0, TITLE.length), 1),
-        address: locationX + ',' + locationY,
-        price: getRandomValue(MIN_PRICE, MAX_PRICE),
-        type: TYPES[getRandomValue(0, TYPES.length)],
-        rooms: getRandomValue(MIN_ROOMS, MAX_ROOMS),
-        guests: getRandomValue(1, MAX_GUESTS),
-        checkin: window.data.CHECKS[getRandomValue(0, window.data.CHECKS.length)],
-        checkout: window.data.CHECKS[getRandomValue(0, window.data.CHECKS.length)],
-        features: getFeatures(),
-        description: '',
-        photos: []
-      },
-
-      location: {
-        x: locationX,
-        y: locationY
-      }
-    };
-
-    return object;
-  };
-
-  var getObjectsArray = function (objectsCount) {
-    var objects = [];
-    for (var i = 0; i < objectsCount; i++) {
-      objects.push(getNewObject());
-    }
-
-    return objects;
-  };
-
-  window.data.objects = getObjectsArray(OBJECTS_COUNT);
+  window.backend.load(loadHandler, window.data.errorHandler);
 })();
