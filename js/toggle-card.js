@@ -2,6 +2,7 @@
 
 (function () {
   var ESC = 27;
+  var ENTER = 13;
 
   var map = document.querySelector('.map');
   var mapPins = document.querySelector('.map__pins');
@@ -29,7 +30,6 @@
 
   window.closeCard = function () {
     var cardPopup = map.querySelector('.map__card');
-    //cardPopup.classList.add('hidden');
     mapPins.removeChild(cardPopup);
 
     lowlightActivePin();

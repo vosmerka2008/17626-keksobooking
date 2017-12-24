@@ -25,8 +25,6 @@
 
       var map = document.querySelector('.map');
       map.appendChild(pinFragment);
-
-      return pinFragment;
     }
   };
 })();

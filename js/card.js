@@ -37,7 +37,7 @@
       newElement.appendChild(itemImg);
       picturesLi.appendChild(newElement);
     }
-      picturesUl.appendChild(picturesLi);
+    picturesUl.appendChild(picturesLi);
   };
 
   window.card = {
