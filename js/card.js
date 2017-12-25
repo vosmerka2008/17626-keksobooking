@@ -27,17 +27,18 @@
 
   var renderPhotos = function (cardElement, pictures) {
     var picturesUl = cardElement.querySelector('.popup__pictures');
-    picturesUl.removeChild(newElement);
-    var picturesLi = document.createDocumentFragment();
+    var picturesLi = picturesUl.querySelector('li');
+    picturesUl.removeChild(picturesLi);
+    var picturesNewLi = document.createDocumentFragment();
     for (var i = 0; i < pictures.length; i++) {
       var newElement = document.createElement('li');
       var itemImg = document.createElement('img');
       itemImg.src = pictures[i];
       itemImg.setAttribute('style', 'width: 40px; height: 40px;');
       newElement.appendChild(itemImg);
-      picturesLi.appendChild(newElement);
+      picturesNewLi.appendChild(newElement);
     }
-    picturesUl.appendChild(picturesLi);
+    picturesUl.appendChild(picturesNewLi);
   };
 
   window.card = {
