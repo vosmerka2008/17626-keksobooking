@@ -27,7 +27,7 @@
 
     for (var i = 1; i < pins.length; i++) {
       if (pins[i] !== pinMain) {
-         mapPins.removeChild(pins[i]);
+        mapPins.removeChild(pins[i]);
       }
     }
   };

@@ -1,6 +1,6 @@
 'use strict';
 
-(function() {
+(function () {
   var lastTimeout;
 
   window.debounce = function (callback, delayInMills) {

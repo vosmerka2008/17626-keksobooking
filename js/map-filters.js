@@ -5,8 +5,8 @@
   var MIDDLE_PRICE = 50000;
 
   var prices = {};
-  var prices = {
-    'any': function(price) {
+  prices = {
+    'any': function (price) {
       return true;
     },
 
@@ -24,7 +24,6 @@
       return price >= MIDDLE_PRICE;
     }
   };
-  var filteredArrey = [];
 
   var filterType = function (elements, value) {
     var filteredElement = elements.filter(function (element) {
@@ -62,7 +61,7 @@
   var filterFeatures = function (elements, value) {
     var filteredElement = elements.filter(function (element) {
       for (var i = 0; i < value.length; i++) {
-        if (element.offer.features.indexOf(value[i]) == -1) {
+        if (element.offer.features.indexOf(value[i]) === -1) {
           return false;
         }
       }
@@ -101,9 +100,7 @@
 
   var filterAndRender = function () {
     window.closeCard();
-    console.log("Begin elements", window.data.objects);
     var filtered = filterElements(window.data.objects);
-    console.log("Filtered elements = ", filtered);
 
     window.pin.renderAllPins(filtered, false);
   };
@@ -114,13 +111,13 @@
     filters.push(document.querySelector('#housing-price'));
     filters.push(document.querySelector('#housing-rooms'));
     filters.push(document.querySelector('#housing-guests'));
-    document.querySelectorAll('.map__filter-set input[type="checkbox"]').forEach(function(input) {
+    document.querySelectorAll('.map__filter-set input[type="checkbox"]').forEach(function (input) {
       filters.push(input);
-    })
+    });
 
-    filters.forEach(function(filter) {
-      filter.addEventListener('change', function() {
-          window.debounce(filterAndRender, 500);
+    filters.forEach(function (filter) {
+      filter.addEventListener('change', function () {
+        window.debounce(filterAndRender, 500);
       });
     });
   };
