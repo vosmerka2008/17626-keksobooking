@@ -22,6 +22,7 @@
 
     var onMouseMove = function (moveEvt) {
       moveEvt.preventDefault();
+
       var shift = {
         x: startCoords.x - moveEvt.clientX,
         y: startCoords.y - moveEvt.clientY
@@ -56,6 +57,7 @@
 
     var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
+      onMouseMove(upEvt);
       getAddressValue();
 
       document.removeEventListener('mousemove', onMouseMove);
