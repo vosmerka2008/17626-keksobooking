@@ -6,21 +6,15 @@
 
   var prices = {};
   prices = {
-    'any': function (price) {
-      return true;
-    },
-
     'low': function (price) {
       return price < LOW_PRICE;
     },
 
     'middle': function (price) {
-
       return price >= LOW_PRICE && price < MIDDLE_PRICE;
     },
 
     'high': function (price) {
-
       return price >= MIDDLE_PRICE;
     }
   };
@@ -36,7 +30,7 @@
   var filterPrice = function (elements, value) {
     var filteredElement = elements.filter(function (element) {
 
-      return prices[value](element.offer.price);
+      return value === 'any' || prices[value](element.offer.price);
     });
 
     return filteredElement;
