@@ -1,14 +1,14 @@
 'use strict';
 
 (function () {
-  var OBJECTS_COUNT = 8;
+  var OBJECTS_COUNT = 5;
 
   var loadHandler = function (serverObjects) {
     for (var i = 0; i < OBJECTS_COUNT; i++) {
       window.data.objects.push(serverObjects[i]);
     }
 
-    window.pin.renderAllPins(window.data.objects);
+    window.pin.renderAllPins(window.data.objects, true);
   };
 
   window.data = {

@@ -8,9 +8,9 @@
   var mapPins = document.querySelector('.map__pins');
   var prevIndex = -1;
 
-  var createCardFragment = function (i) {
+  var createCardFragment = function (object) {
     var fragment = document.createDocumentFragment();
-    fragment.appendChild(window.card.renderMapCard(window.data.objects[i]));
+    fragment.appendChild(window.card.renderMapCard(object));
     return fragment;
   };
 
@@ -21,7 +21,10 @@
     }
 
     pinsImg[index].parentNode.classList.add('map__pin--active');
-    mapPins.appendChild(createCardFragment(index - 1));
+
+    var src = pinsImg[index].src;
+    var object = window.pin.pinsDictionary[src];
+    mapPins.appendChild(createCardFragment(object));
 
     if (lastIndex !== -1) {
       pinsImg[lastIndex].parentNode.classList.remove('map__pin--active');
@@ -30,7 +33,9 @@
 
   window.closeCard = function () {
     var cardPopup = map.querySelector('.map__card');
-    mapPins.removeChild(cardPopup);
+    if (cardPopup !== null) {
+      mapPins.removeChild(cardPopup);
+    }
 
     lowlightActivePin();
   };
