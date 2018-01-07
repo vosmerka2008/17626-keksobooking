@@ -13,10 +13,20 @@ window.form = (function () {
   var PRICES = [FLAT_PRICE, HUT_PRICE, HOUSE_PRICE, PALACE_PRICE];
   var APARTMENTS = ['flat', 'bungalo', 'house', 'palace'];
   var ROOMS = ['1', '2', '3', '100'];
-  var CAPACITY = ['1', '2', '3', '0'];
+  var CAPACITY = [['1'], ['1', '2'], ['1', '2', '3'], ['0']];
   var CHECKS = ['12:00', '13:00', '14:00'];
 
   var formNotice = document.querySelector('.notice__form');
+
+  var triggerOnChangeEventOnSingleElement = function (element) {
+    if ('createEvent' in document) {
+      var evt = document.createEvent('HTMLEvents');
+      evt.initEvent('change', false, true);
+      element.dispatchEvent(evt);
+    } else {
+      element.fireEvent('onchange');
+    }
+  };
 
   var setupAddress = function () {
     var address = formNotice.querySelector('#address');
@@ -92,13 +102,46 @@ window.form = (function () {
     var price = formNotice.querySelector('#price');
 
     window.synchronizeFields(type, price, APARTMENTS, PRICES, syncValueWithMin);
+    triggerOnChangeEventOnSingleElement(type);
+  };
+
+  var contains = function (array, object) {
+    for (var i = 0; i < array.length; i++) {
+      if (array[i] === object) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  var syncValuesWithDisabling = function (element, values) {
+    var firstEnabledElementIndex = -1;
+
+    for (var i = 0; i < element.length; i++) {
+      var option = element.options[i];
+
+      var isOptionValueExistsInValuesArray = contains(values, option.value);
+      option.disabled = !isOptionValueExistsInValuesArray;
+
+      option.selected = false;
+
+      if (firstEnabledElementIndex === -1 && isOptionValueExistsInValuesArray) {
+        firstEnabledElementIndex = i;
+      }
+    }
+
+    if (firstEnabledElementIndex !== -1) {
+      element.options[firstEnabledElementIndex].selected = true;
+    }
+
   };
 
   var setupRoomCapacityConnection = function () {
     var roomElement = formNotice.querySelector('#room_number');
     var capacityElement = formNotice.querySelector('#capacity');
 
-    window.synchronizeFields(roomElement, capacityElement, ROOMS, CAPACITY, syncValues);
+    window.synchronizeFields(roomElement, capacityElement, ROOMS, CAPACITY, syncValuesWithDisabling);
+    triggerOnChangeEventOnSingleElement(roomElement);
   };
 
   var setupSubmitButton = function () {
@@ -124,11 +167,25 @@ window.form = (function () {
     }
   };
 
+  var syncAllFormElements = function () {
+    var type = formNotice.querySelector('#type');
+    var timeIn = formNotice.querySelector('#timein');
+    var roomElement = formNotice.querySelector('#room_number');
+
+    triggerOnChangeEventOnSingleElement(type);
+    triggerOnChangeEventOnSingleElement(timeIn);
+    triggerOnChangeEventOnSingleElement(roomElement);
+  };
+
   var createSubmitHandler = function () {
     formNotice.addEventListener('submit', function (evt) {
       evt.preventDefault();
+
       window.backend.save(new FormData(formNotice), function () {
         formNotice.reset();
+
+        window.moveMainPinOnStartCoordinates();
+        syncAllFormElements();
       }, window.data.errorHandler);
     });
   };
